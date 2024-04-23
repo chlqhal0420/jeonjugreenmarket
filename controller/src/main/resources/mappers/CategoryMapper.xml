@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="jeonju.greenmarket.mapper.categoryMapper">
+
+ 
+	  <!-- 카테고리 등록 -->
+    <insert id="categoryinsert" parameterType="jeonju.greenmarket.vo.CategoryVO">
+        INSERT INTO category (category_no2, created_by, created_at, category_name)
+        			 VALUES (#{categoryNo2}, #{createdBy}, NOW(), #{categoryName})
+    </insert>
+    
+    <!-- 카테고리 중복 확인 -->
+    <select id="checkDuplicateCategory" parameterType="jeonju.greenmarket.vo.CategoryVO" resultType="int">
+   	 SELECT COUNT(*) FROM category WHERE category_name = #{categoryName}
+	</select>
+	
+	
+	<!-- 카테고리 목록 조회 -->
+	<select id="categoryList" resultType="jeonju.greenmarket.vo.CategoryVO">
+		SELECT * FROM category 
+	</select>
+	
+	<!-- 카테고리 삭제 -->
+	<delete id="deleteCategory" parameterType="java.lang.String">
+    	DELETE FROM category
+    	WHERE category_name = #{categoryName}
+	</delete>
+	
+	<!-- 최신 카테고리 기본키값 가져오기  -->
+	<select id="recentCategoryNo" resultType="int">
+        SELECT category_no
+        FROM category
+        ORDER BY category_no DESC
+        LIMIT 1;
+    </select>
+</mapper>

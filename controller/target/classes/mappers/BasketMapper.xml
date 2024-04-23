@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jeonju.greenmarket.mapper.basketMapper">
+
+
+<!-- 장바구니에 해당 상품이 담겨있는지 확인 -->
+<select id="selectCountInBasket"  parameterType="jeonju.greenmarket.vo.BasketVO" resultType="String">
+	SELECT IF(count(*) = 0 ,'false','true') FROM basket 
+	WHERE created_by = #{createdBy} 
+	AND item_no = #{itemNo}
+</select>
+
+<!-- 장바구니에 추가하는 상품추가 -->
+<insert id="insertProductIntoBasket" parameterType="jeonju.greenmarket.vo.BasketVO">
+	INSERT INTO basket ( 	  item_no
+							, created_by
+							, item_cnt
+							, created_at
+							)
+				 VALUES (
+				        #{itemNo},
+				        #{createdBy},
+				        <![CDATA[
+				        IF(#{itemCnt} <= 0, 1, #{itemCnt})
+				        ]]>,  <!-- IF 조건 사용 시 XML 예약 문자를 CDATA 섹션으로 감싸줌 -->
+				        NOW())
+</insert>
+
+<resultMap type="BasketVO" id="basketResult">
+	<result property="basketNo" column="basket_no"/>
+	<result property="itemNo" column="item_no"/>
+	<result property="createdBy" column="created_by"/>
+	<result property="createdAt" column="created_at"/>
+	<result property="itemCnt" column="item_cnt"/>
+	<result property="checked" column="checked"/>
+</resultMap>
+
+<resultMap type="ItemVO" id="itemResult">
+	<result property="itemNo" column="item_no"/>
+	<result property="name" column="name"/>
+	<result property="price" column="price"/>
+	<result property="image" column="image"/>
+	<result property="categoryNo" column="categoryNo"/>
+	<result property="stock" column="stock"/>
+	<result property="delyn" column="delyn"/>
+	<result property="taxationType" column="taxation_type"/>
+	<result property="salesStatus" column="sales_status"/>
+	<result property="itemOrigin" column="item_origin"/>
+</resultMap>
+
+<!-- 회원번호로 회원의 장바구니 정보 조회하기 -->
+<select id="selectBasketList" resultMap="basketResult" parameterType="BasketVO" >
+	SELECT * FROM basket WHERE created_by = #{createdBy}
+</select>
+	
+<!-- 장바구니 테이블에서 얻은 회원의 itemNo를 받아서 상품정보를 얻음-->
+<!-- <select id="selectItemList" resultMap="itemResult" parameterType="ItemVO">
+    SELECT item_no, name, price, image
+    FROM item
+    WHERE item_no IN
+    <foreach item="item" collection="list" open="(" separator="," close=")">
+        #{item.itemNo}
+    </foreach>
+</select> -->
+<select id="selectItem" resultMap="itemResult" parameterType="BasketVO">
+    SELECT item_no, name, price, image
+    FROM item
+    WHERE item_no = #{itemNo}
+</select>
+
+<!-- 상품수량 변경 -->
+<update id="updateItemCnt" parameterType="jeonju.greenmarket.vo.BasketVO" >
+	UPDATE basket 
+		   SET item_cnt =  <![CDATA[
+				        IF(#{itemCnt} <= 0, 1, #{itemCnt})
+				        ]]>
+		WHERE basket_no = #{basketNo} 
+</update>
+
+<!-- 장바구니 상품삭제 -->
+<delete id="deleteOneItemInBasket" parameterType="jeonju.greenmarket.vo.BasketVO">
+	DELETE FROM basket WHERE basket_no = #{basketNo} 
+</delete>
+
+<update id="updateIschecked" parameterType="jeonju.greenmarket.vo.BasketVO">
+	UPDATE basket 
+		   SET checked = #{checked}
+		WHERE basket_no = #{basketNo} 
+</update>		
+</mapper>	

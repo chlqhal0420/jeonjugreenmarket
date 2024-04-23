@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jeonju.greenmarket.mapper.mypageMapper">	
+	<!-- 회원번호와 일치하는 주소목록 가져오기 -->
+	<select id="selectAllAddr" parameterType="int" resultType="jeonju.greenmarket.vo.AddressVO">
+		SELECT *
+		  from address
+		 WHERE created_by = #{createdBy} 
+	</select>
+	<!-- 주소고유번호로 주소 가져오기 -->
+	<select id="selectOneAddressByAddrNo" parameterType="int" resultType="jeonju.greenmarket.vo.AddressVO">
+		SELECT *
+		  from address
+		 WHERE addr_no = #{addrNo} 
+	</select>
+	
+	<!-- 회원의 기본주소 가져오기 -->
+	<select id="selectBasicAddr" parameterType="int" resultType="jeonju.greenmarket.vo.AddressVO">
+		SELECT *
+		  from address
+		 WHERE created_by = #{createdBy} AND def = 'Y' 
+	</select>
+	
+	<!-- 주소 수정하기 -->
+	<update id="upadateAddress"  parameterType="jeonju.greenmarket.vo.AddressVO" >
+		UPDATE address
+		  SET addr_detail =#{addrDetail}
+		  		, phone = #{phone}
+		  		, name = #{name}
+		  		, def= #{def}
+		  WHERE addr_no = #{addrNo}
+	</update>
+	
+	<!-- 해당 회원이 가진 모든 주소의 '기본주소' 칼럼을  N으로 리셋하기 -->
+	<update id="resetDef"  parameterType="jeonju.greenmarket.vo.AddressVO" >
+		UPDATE address
+		  SET def= 'N'
+		  WHERE created_by = #{createdBy}
+	</update>
+	
+	<!-- 새 주소 추가하기 -->
+	<insert id="newAddrInsert" parameterType="jeonju.greenmarket.vo.AddressVO">
+		INSERT INTO address ( name
+							, addr
+							, addr_post
+							, addr_detail
+							, phone
+							, def
+							, created_by  )
+					values ( #{name}
+						    , #{addr}
+						    , #{addrPost}
+							, #{addrDetail}
+							, #{phone}
+							, #{def} 
+							, #{createdBy} )		
+	</insert>
+	
+	<!-- 주소 삭제하기 -->
+	<delete id="deleteAddressByAddrNo" parameterType="int">
+		DELETE FROM address WHERE addr_no = #{addrNo}
+	</delete>
+	
+	<!-- 찜리스트 가져오기 -->
+	<select id="selectLikedList" parameterType="int" resultType="jeonju.greenmarket.vo.LikeVO">
+	    SELECT item.item_no, item.name, item.price, item.image , wish.wish_no
+	    FROM item 
+	    INNER JOIN wish ON item.item_no = wish.item_no 
+	    WHERE wish.created_by = #{createdBy}  
+	</select>
+	
+	<!-- 찜 삭제하기 -->
+	<delete id="deleteLikeByWishNo" parameterType="int">
+		DELETE FROM wish WHERE wish_no = #{wishNo}
+	</delete>
+	
+</mapper>			

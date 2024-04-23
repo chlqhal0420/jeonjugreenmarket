@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//src/main/java/jeonju/greenmarket/controller/BasketController.java=UTF-8
+encoding//src/main/java/jeonju/greenmarket/controller/LikeController.java=UTF-8
+encoding//src/main/java/jeonju/greenmarket/controller/MyPageAddressController.java=UTF-8
+encoding//src/main/java/jeonju/greenmarket/controller/OrderController.java=UTF-8
+encoding//src/main/java/jeonju/greenmarket/vo/SecurityUserVO.java=UTF-8
+encoding//src/main/webapp/resources/css/main/mypage_dibs.css=UTF-8

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jeonju.greenmarket.mapper.orderMapper">
+
+	<!-- 주문 정보 DB 저장 -->
+	<insert id="orderInsert"
+		parameterType="jeonju.greenmarket.vo.OrderVO">
+		INSERT INTO
+		`order` (
+		order_no,
+		created_by,
+		created_at,
+		modified_by,
+		modified_at,
+		name,
+		addr,
+		addr_post,
+		addr_detail,
+		tel,
+		phone,
+		req,
+		total_order_amount,
+		total_shipping_cost
+		) VALUES (
+		#{orderNo},
+		#{createdBy},
+		now(),
+		#{modifiedBy},
+		now(),
+		#{name},
+		#{addr},
+		#{addrPost},
+		#{addrDetail},
+		#{tel},
+		#{phone},
+		#{req},
+		#{totalOrderAmount},
+		#{totalShippingCost}
+		)
+	</insert>
+
+	<!-- 주문상품(상세) 정보 저장 -->
+	<insert id="orderDetailInsert"
+		parameterType="jeonju.greenmarket.vo.OrderDetailVO">
+		INSERT INTO
+		`orderdetail` (
+		order_no,
+		created_by,
+		created_at,
+		price,
+		item_cnt,
+		name
+		)VALUES(
+		#{orderNo},
+		#{createdBy},
+		now(),
+		#{price},
+		#{itemCnt},
+		#{name}
+		)
+	</insert>
+
+
+	<!-- 주문상품상세(최종결제금액,결제번호) 목록 조회 (회원기본키 기준) -->
+	<select id="orderDetail"
+		resultType="jeonju.greenmarket.vo.OrderDetailVO" parameterType="int">
+		 SELECT od.*, o.order_status, o.total_order_amount, p.payment_no
+    FROM orderdetail od
+    JOIN `order` o ON od.order_no = o.order_no
+    LEFT JOIN payment p ON o.order_no = p.order_no
+    WHERE od.created_by = #{createdBy};
+	</select>
+
+	<!-- 장바구니에서 선택한 상품 목록가져오기 -->
+	<resultMap type="BasketVO" id="basketResult">
+		<result property="basketNo" column="basket_no" />
+		<result property="itemNo" column="item_no" />
+		<result property="createdBy" column="created_by" />
+		<result property="createdAt" column="created_at" />
+		<result property="itemCnt" column="item_cnt" />
+		<result property="checked" column="checked" />
+	</resultMap>
+
+	<resultMap type="ItemVO" id="itemResult">
+		<result property="itemNo" column="item_no" />
+		<result property="name" column="name" />
+		<result property="price" column="price" />
+		<result property="image" column="image" />
+		<result property="categoryNo" column="categoryNo" />
+		<result property="stock" column="stock" />
+		<result property="delyn" column="delyn" />
+		<result property="taxationType" column="taxation_type" />
+		<result property="salesStatus" column="sales_status" />
+		<result property="itemOrigin" column="item_origin" />
+	</resultMap>
+
+	<!-- 회원번호로 회원의 장바구니 정보 조회하기 -->
+	<select id="SelectBasketListWithIsChecked"
+		resultMap="basketResult" parameterType="BasketVO">
+		SELECT * FROM basket WHERE created_by = #{createdBy} AND checked = 'Y'
+	</select>
+
+	<!-- 장바구니 테이블에서 얻은 회원의 itemNo를 받아서 상품정보를 얻음 -->
+	<select id="selectItemList" resultMap="itemResult"
+		parameterType="java.util.Map">
+		SELECT item_no, name, price, image
+		FROM item
+		WHERE item_no IN
+		<foreach item="item" collection="list" open="(" separator=","
+			close=")">
+			#{item.itemNo}
+		</foreach>
+	</select>
+
+	<!-- 고객요청취소 -->
+	<update id="cancelOrder" parameterType="jeonju.greenmarket.vo.OrderVO">
+		 UPDATE `order`
+    		SET order_status = '고객요청취소',
+       		 modified_at = NOW() 
+   			 WHERE order_no = #{orderNo};  
+	</update>
+
+
+</mapper>	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		

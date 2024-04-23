@@ -1,0 +1,68 @@
+
+/* 찜한 상품 삭제버튼*/
+.shoping__cart__table table tbody tr td.shoping__cart__quantity .btn.delete-btn {
+        background-color: white;
+        color: #7fad39;
+        border: 1px solid #7fad39; /* 테두리 색상 추가 */
+    }
+.shoping-cart {
+    padding-top: 10px; 
+    }
+    
+.blog__sidebar__item__tags button {
+    margin-bottom: 0px;
+  
+} 
+
+
+/*css 추가*/
+
+
+.blog__sidebar__item__tags {
+    display: flex; /* Flexbox를 사용하여 자식 요소들을 나란히 배치 */
+    gap: 10px; /* 버튼 사이의 간격 설정 */
+}
+
+.btn {
+    padding: 10px 20px; /* 버튼의 안쪽 여백 설정 */
+    font-size: 16px; /* 글자 크기 설정 */
+    line-height: 1.5; /* 글자 높이 설정 */
+    border: 1px solid #ccc; /* 테두리 설정 */
+    background-color: #f5f5f5; /* 배경색 설정 */
+    cursor: pointer; /* 마우스 커서를 포인터 모양으로 변경 */
+}
+
+.blog__sidebar__item__tags .btn {
+    flex-grow: 1; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 10px; 
+    font-size: 16px; 
+    line-height: 20px; 
+    margin: 0 5px; 
+    cursor: pointer;
+    border: 1px solid #ccc; 
+    background-color: #f5f5f5;
+    box-sizing: border-box; 
+}
+
+
+.checkout__input__checkbox label {
+    display: flex;
+    align-items: center; 
+}
+
+.checkout__input__checkbox input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+
+/*사이드바 고객센터*/
+.blog__sidebar__recent__item {
+    overflow: hidden;
+    margin-bottom: 20px;
+    margin-left: 25px;
+}
+
+      

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jeonju.greenmarket.mapper.itemMapper">
+	
+	
+	 <!-- 신선식품 > 채소 상품 전체 목록 조회 -->
+    <select id="itemList" parameterType="jeonju.greenmarket.vo.ItemVO" resultType="jeonju.greenmarket.vo.ItemVO">
+        SELECT i.image, i.name, i.price, i.item_no,c.category_name
+        FROM item AS i
+        JOIN category AS c ON i.category_no = c.category_no
+        WHERE c.category_name = '채소' and delyn = 'N'
+    </select>
+    
+	 <!-- 신선식품 > 곡류 상품 전체 목록 조회 -->
+    <select id="itemList1" parameterType="jeonju.greenmarket.vo.ItemVO" resultType="jeonju.greenmarket.vo.ItemVO">
+        SELECT i.image, i.name, i.price, i.item_no,c.category_name
+        FROM item AS i
+        JOIN category AS c ON i.category_no = c.category_no
+        WHERE c.category_name = '곡류' and delyn = 'N'
+    </select>
+
+	<!-- 상품 상세보기 (상품코드 기준)-->
+	<select id="itemDetail" resultType="jeonju.greenmarket.vo.ItemVO" parameterType="String">
+		SELECT *
+		FROM item
+		WHERE item_no = #{itemNo}
+	</select>
+	
+	<!-- 메인 페이지 상품 정보 목록 조회 -->
+	<select id="getAllItems" parameterType="int" resultType="jeonju.greenmarket.vo.ItemVO"> 
+		SELECT * FROM item WHERE delyn = 'N' LIMIT 30;
+	</select>
+</mapper>

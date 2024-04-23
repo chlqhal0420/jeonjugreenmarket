@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jeonju.greenmarket.mapper.adminUserMapper">
+
+
+	<!-- 관리자 - 회원관리 회원목록 및 검색기능 -->
+	<select id="selectAll" resultType="jeonju.greenmarket.vo.UserVO" parameterType="jeonju.greenmarket.vo.SearchVO">
+		SELECT *
+		  FROM user
+		 WHERE 1=1
+		<if test='searchType != null and searchType.equals("userid")'>
+		   AND userid like concat('%',#{searchValue},'%')
+		</if>	
+		<if test='searchType != null and searchType.equals("name")'>
+		   AND name like concat('%',#{searchValue},'%')
+		</if>  
+	</select>
+
+	<!-- 회원 상태 변경 -->
+	<update id="updateStatus" parameterType="jeonju.greenmarket.vo.UserVO">
+		UPDATE user
+		SET status = #{status}
+		WHERE created_by = #{createdBy}
+	</update>
+	
+	<!-- 관리자 - 회원관리 회원 상세보기  -->
+	<select id="selectOneByCreatedBy" resultType="jeonju.greenmarket.vo.UserVO" parameterType="int">
+		SELECT *
+		FROM user
+		WHERE created_by = #{createdBy}
+	</select>
+	
+	<!-- 회원 정보 수정 -->
+	<update id="updateUser" parameterType="jeonju.greenmarket.vo.UserVO">
+		UPDATE user
+		 SET name = #{name}
+			,userid = #{userid}
+			,phone = #{phone}
+			,email = #{email}
+			,modified_at = now() 
+		WHERE created_by = #{createdBy}
+	</update>
+
+</mapper>
+
+
+

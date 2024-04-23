@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="jeonju.greenmarket.mapper.adminItemMapper">
+
+      <!-- 상품 등록 -->
+    <insert id="insert" parameterType="jeonju.greenmarket.vo.ItemVO">
+        INSERT INTO
+        item(
+             item_no
+            ,category_no    
+            ,created_by
+            ,created_at
+            ,modified_by
+            ,modified_at
+            ,name
+            ,price
+            ,image
+            ,stock
+            ,manufacturer
+            ,item_origin
+            ,taxation_type
+            ,sales_status
+        ) VALUES (
+             #{itemNo}
+            ,#{categoryNo}
+            ,#{createdBy}
+            ,now()
+            ,#{modifiedBy}
+            ,now()
+            ,#{name}
+            ,#{price}
+            ,#{image}
+            ,#{stock}
+            ,#{manufacturer}
+            ,#{itemOrigin}
+            ,#{taxationType}
+            ,#{salesStatus}
+        )
+    </insert>
+    
+	
+	<!-- 상품관리 검색기능, 상품조회 -->
+	<select id="selectAll" resultType="jeonju.greenmarket.vo.ItemVO" parameterType="jeonju.greenmarket.vo.SearchVO">
+		SELECT *
+		  FROM item
+		 WHERE 1=1 <!-- and delyn = 'N' -->
+		<if test='searchType != null and searchType.equals("itemNo")'>
+		   AND  item_no like concat('%',#{searchValue},'%')
+		</if>	
+		<if test='searchType != null and searchType.equals("name")'>
+		   AND name like concat('%',#{searchValue},'%')
+		</if>  
+	</select>
+	
+	
+	<!-- 상품코드 중복 확인 -->
+	<select id="checkDuplicate" parameterType="jeonju.greenmarket.vo.ItemVO" resultType="int">
+		SELECT COUNT(*) FROM item WHERE item_no = #{itemNo}
+	</select>
+	
+	
+	<!-- 수정할 해당 상품정보 불러오기  -->
+	<select id="selectOneByItemNo" resultType="jeonju.greenmarket.vo.ItemVO" parameterType="String">
+		SELECT *
+		FROM item
+		WHERE item_no = #{itemNo}
+	</select>
+	
+	<!-- 상품 정보 수정 -->
+	<update id="updateItem" parameterType="jeonju.greenmarket.vo.ItemVO">
+		UPDATE item
+		SET item_no = #{itemNo}
+		   ,name = #{name}
+		   ,price = #{price}
+		   ,manufacturer = #{manufacturer}
+		   ,item_origin = #{itemOrigin}
+		   ,stock = #{stock}
+		   ,taxation_type = #{taxationType}
+		   ,sales_status = #{salesStatus}
+		   ,delyn = #{delyn}
+		
+		WHERE item_no = #{itemNo}	
+	
+	</update>
+	
+	
+	<!-- 상품 삭제 -->
+	<update id="deleteItems" parameterType="jeonju.greenmarket.vo.ItemVO">
+		UPDATE item
+		SET delyn = 'Y'
+		WHERE item_no = #{itemNo}
+	</update>
+	
+	
+	<!-- 지역별 추가 배송비 등록 -->
+	<insert id="shippingcost" parameterType="jeonju.greenmarket.vo.ShippingCostVO">
+		INSERT INTO
+		local_shipping_policy(area_name, shipping_local)
+		VALUES(#{areaName}, #{shippingLocal})
+		
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

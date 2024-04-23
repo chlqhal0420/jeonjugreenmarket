@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jeonju.greenmarket.mapper.userMapper">
+	<!-- <insert id="insert" parameterType="jeonju.greenmarket.vo.UserVO">
+			INSERT INTO
+			user(
+			 id
+			,name
+			,phone
+			,email
+			,password
+			,created_at
+			,auth_code
+		)VALUES(
+			 #{id}
+			,#{name}
+			,#{phone}
+			,#{email}
+			,#{password}
+			,now()
+			,'M'
+		)	
+	</insert> -->
+	<insert id="insert" parameterType="java.util.Map">	
+		insert into user(userid
+		     		   , password
+		     		   , name
+		     		   , phone
+					   , email
+		     		   , enabled
+		     		   , created_at
+		     		   , authority) 
+		          values(#{userid}
+		               , #{password}
+		               , #{name}
+		               , #{phone}
+					   , #{email}
+		               , 1
+		               , now()
+		               , 'ROLE_USER')
+	</insert>
+	<!-- 아이디로 사용자 정보조회 해오기 -->
+	<select id="selectLogin" parameterType="String" resultType="java.util.Map">
+		SELECT userid as username
+		     , name
+		     , password
+		     , created_by
+		     , phone
+		     , email
+		     , enabled
+		     , authority
+		  from user
+		 WHERE userid = #{value} and status = '활동'
+	</select>
+	
+	  <!-- 아이디 중복 확인 쿼리 -->
+    <select id="findUserByUserId" resultType="jeonju.greenmarket.vo.UserVO">
+        SELECT userid FROM user WHERE userid = #{userid}
+    </select>
+	<!-- 이름과 휴대폰으로 사용자확인하기 -->
+	<select id="findByNameAndPhone" parameterType="jeonju.greenmarket.vo.UserVO" resultType="jeonju.greenmarket.vo.UserVO">
+    	SELECT * FROM user WHERE name = #{name} AND phone = #{phone}
+	</select>
+	<!-- 이름과 휴대폰번호로 사용자확인하기 -->
+	<select id="findByIdAndPhone" parameterType="jeonju.greenmarket.vo.UserVO" resultType="jeonju.greenmarket.vo.UserVO">
+    	SELECT * FROM user WHERE userid = #{userid} AND phone = #{phone}
+	</select>
+	
+	<update id="updatePassword" parameterType="jeonju.greenmarket.vo.UserVO" >
+		UPDATE user SET password = #{password} WHERE userid = #{userid}
+	</update>
+	
+	<!-- 회원번호로 사용자 정보조회하기 -->
+	<select id="selectOneWithCreatedBy" 
+			resultType="jeonju.greenmarket.vo.UserVO" 
+			parameterType="int">
+		SELECT *
+		  FROM user
+		 WHERE created_by = #{createdBy}
+	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="updateUser" parameterType="jeonju.greenmarket.vo.UserVO">
+		UPDATE user 
+		   SET name = #{name}
+		     , phone = #{phone}
+		     , email = #{email}
+		     , password = #{password}
+		WHERE userid = #{userid} 
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<update id="deleteUser" parameterType="int">
+	UPDATE user 
+		   SET status = '탈퇴'
+		WHERE created_by = #{createdBy}
+	</update>
+
+		
+</mapper>			

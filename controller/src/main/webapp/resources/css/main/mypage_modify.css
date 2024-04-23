@@ -1,0 +1,111 @@
+
+/* �뒪���씪 �젙�쓽 */
+.register-form .input-group {
+	display: flex;
+/* 	align-items: center; */
+	margin-bottom: 20px; /* �빆紐� 媛꾧꺽 議곗젅 */
+}
+
+.register-form .input-group label {
+	width: 150px; /* �씪踰� �꼫鍮� */
+	font-size: 16px; /* 湲��옄 �겕湲� */
+	color: black;
+	margin-right: 10px; /* �씪踰④낵 �엯�젰 �뼇�떇 媛꾩쓽 媛꾧꺽 */
+}
+
+.register-form .input-group input {
+	width: 350px; /* �엯�젰 �뼇�떇 �꼫鍮� 議곗젙 */
+	height: 46px; /* �엯�젰 �뼇�떇 �넂�씠 */
+	font-size: 16px; /* �엯�젰�뼇�떇 �궡 湲��옄 �겕湲� */
+	padding: 0px 11px 1px 15px;
+	border-radius: 4px;
+}
+
+.register-form .input-group .required {
+	color: red; /* �븘�닔 �빆紐� 蹂꾪몴 �깋�긽 */
+}
+
+.register-form .input-group button {
+	height: 46px; /* 踰꾪듉 �넂�씠 */
+	font-size: 16px; /* 踰꾪듉 �궡 湲��옄 �겕湲� */
+	color: #7fad39; /* 踰꾪듉 湲��옄�깋 */
+	background-color: white; /* 踰꾪듉 諛곌꼍�깋 */
+	border: 1px solid #7fad39; /* 踰꾪듉 �뀒�몢由� �깋�긽 */
+	margin-left: 10px; /* 踰꾪듉怨� �엯�젰 �뼇�떇 媛꾩쓽 媛꾧꺽 */
+	width: 150px; /* 踰꾪듉 �꼫鍮� */
+	border-radius: 4px;
+}
+
+.register-form .submit-btn-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 50px; /* 踰꾪듉 �긽�떒�쓽 �뿬諛� 議곗젙 */
+}
+
+.register-form .submit-btn {
+	width: 150px; /* 媛��엯�븯湲� 踰꾪듉 �꼫鍮� */
+	height: 46px; /* 媛��엯�븯湲� 踰꾪듉 �넂�씠 */
+	font-size: 16px; /* 媛��엯�븯湲� 踰꾪듉 �궡 湲��옄 �겕湲� */
+	color: white; /* 媛��엯�븯湲� 踰꾪듉 湲��옄�깋 */
+	background-color: #7fad39; /* 媛��엯�븯湲� 踰꾪듉 諛곌꼍�깋 */
+	border: 1px solid #7fad39; /* 媛��엯�븯湲� 踰꾪듉 �뀒�몢由� �깋�긽 */
+	cursor: pointer; /* 留덉슦�뒪 �삤踰� �떆 而ㅼ꽌 蹂�寃� */
+	border-radius: 4px;
+}
+
+.checkout {
+    padding-top: 80px;
+    padding-bottom: 150px;
+}
+
+
+ /* .withdraw-btn {
+        width: 150px;
+        height: 46px;
+        font-size: 16px;
+        color: #7fad39;
+        background-color: white;
+        border: 1px solid #7fad39;
+        cursor: pointer;
+        border-radius: 4px;
+    } */
+    
+        .submit-btn-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px; /* Adjust the gap as needed */
+    }
+
+    .submit-btn, .withdraw-btn {
+        width: 150px; /* Uniform width for buttons */
+        height: 46px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .submit-btn {
+        background-color: #7fad39;
+        color: white;
+        border: 1px solid #7fad39;
+    }
+
+    .withdraw-btn {
+        background-color: white;
+        color: #7fad39;
+        border: 1px solid #7fad39;
+    }
+    
+    .register-form .submit-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-right: 150px;
+}
+
+/*�궗�씠�뱶諛� 怨좉컼�꽱�꽣*/
+.blog__sidebar__recent__item {
+    overflow: hidden;
+    margin-bottom: 20px;
+    margin-left: 25px;
+}

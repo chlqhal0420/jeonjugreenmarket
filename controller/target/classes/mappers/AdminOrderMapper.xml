@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jeonju.greenmarket.mapper.adminOrderMapper">
+	
+	
+	 <!-- 고객요청 취소한 상품 내역조회 -->
+    <select id="cancel" parameterType="jeonju.greenmarket.vo.OrderVO" resultType="jeonju.greenmarket.vo.OrderVO">
+        SELECT o.*, od.name AS product_name
+   	 	FROM `order` o
+    	JOIN orderdetail od ON o.order_no = od.order_no
+    	WHERE o.order_status = '고객요청취소';
+    </select>
+   
+   
+    <!-- 고객요청 취소건 개수 표시 -->
+    <select id="countCancel" resultType="int">
+   		 SELECT COUNT(*) 
+   		 FROM `order` 
+   		 WHERE order_status = '고객요청취소';
+    </select>
+</mapper>

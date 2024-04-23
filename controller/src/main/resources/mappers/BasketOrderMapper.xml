@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jeonju.greenmarket.mapper.basketOrderMapper">
+
+	<!-- 장바구니 주문 정보 DB 저장 -->
+	<insert id="orderInsert1"
+		parameterType="jeonju.greenmarket.vo.OrderVO">
+		INSERT INTO
+		`order` (
+		order_no,
+		created_by,
+		created_at,
+		modified_by,
+		modified_at,
+		name,
+		addr,
+		addr_post,
+		addr_detail,
+		tel,
+		phone,
+		req,
+		total_order_amount,
+		total_shipping_cost
+		) VALUES (
+		#{orderNo},
+		#{createdBy},
+		now(),
+		#{modifiedBy},
+		now(),
+		#{name},
+		#{addr},
+		#{addrPost},
+		#{addrDetail},
+		#{tel},
+		#{phone},
+		#{req},
+		#{totalOrderAmount},
+		#{totalShippingCost}
+		)
+	</insert>
+
+	<!-- 장바구니 주문상품(여러개의 상품) 정보 저장 -->
+	<insert id="orderDetailInsert1"
+		parameterType="jeonju.greenmarket.vo.OrderDetailVO">
+		INSERT INTO
+		`orderdetail` (
+		order_no,
+		created_by,
+		created_at,
+		price,
+		item_cnt,
+		name
+		)VALUES(
+		#{orderNo},
+		#{createdBy},
+		now(),
+		#{price},
+		#{itemCnt},
+		#{name}
+		)
+	</insert>
+
+</mapper>	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		

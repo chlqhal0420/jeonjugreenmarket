@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jeonju.greenmarket.mapper.paymentMapper">
+
+ 		
+ 		
+ 		<!-- 결제 정보 DB 저장 -->
+ 		<insert id="paymentInsert" parameterType="jeonju.greenmarket.vo.PaymentVO">
+		INSERT INTO
+		payment (
+			order_no,
+			created_by,
+			created_at,
+			modified_by,
+			modified_at,
+			payment_method,
+			total_payment_amount
+		) VALUES (
+			#{orderNo},
+			#{createdBy},
+			now(), <!-- 현재 날짜 및 시간을 가져오는 데이터베이스 함수로 변경 -->
+			#{modifiedBy},
+			now(), <!-- 현재 날짜 및 시간을 가져오는 데이터베이스 함수로 변경 -->
+			#{paymentMethod},
+			#{totalPaymentAmount} <!-- 쿼리 문의 끝에 있는 콤마 제거 -->
+			)
+		</insert>
+
+</mapper>	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		

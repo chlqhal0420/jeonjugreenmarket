@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			
+<mapper namespace="jeonju.greenmarket.mapper.likeMapper">				
+	<!-- 좋아요 여부조회 -->
+	<select id="checkLiked" resultType="java.lang.Boolean" parameterType="jeonju.greenmarket.vo.LikeVO">
+        SELECT EXISTS(
+            SELECT 1 FROM wish WHERE item_no = #{itemNo} AND created_by = #{createdBy}
+        )
+    </select>
+    
+<!-- 좋아요 등록 -->
+    <insert id="insertLike" parameterType="jeonju.greenmarket.vo.LikeVO">
+        INSERT INTO wish (item_no
+						, created_by
+						, created_at )
+				values ( ${itemNo}
+						, #{createdBy}
+						, now() )		
+    </insert>
+    
+<!-- 	좋아요 해제 -->
+    <delete id="deleteLike" parameterType="jeonju.greenmarket.vo.LikeVO">
+    	DELETE FROM wish WHERE item_no = #{itemNo} AND created_by = #{createdBy}
+	</delete>
+			
+</mapper>	

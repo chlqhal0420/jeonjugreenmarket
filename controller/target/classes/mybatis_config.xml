@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	<typeAliases>
+		<typeAlias type="jeonju.greenmarket.vo.ItemVO" alias="itemVO"/>
+		<typeAlias type="jeonju.greenmarket.vo.UserVO" alias="userVO"/>		
+		<typeAlias type="jeonju.greenmarket.vo.CategoryVO" alias="categoryVO"/>
+		<typeAlias type="jeonju.greenmarket.vo.AddressVO" alias="addressVO"/>
+		<typeAlias type="jeonju.greenmarket.vo.BasketVO" alias="basketVO"/>
+		<typeAlias type="jeonju.greenmarket.vo.LikeVO" alias="likeVO"/>
+	</typeAliases>
+</configuration>
+
