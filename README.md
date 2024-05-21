@@ -106,7 +106,7 @@
        시큐리티
     </th>
     <th>
-       
+       결제
     </th>
   </tr>
   <tr>
@@ -114,39 +114,39 @@
       <img width="375px" higth="550px" src="https://github.com/chlqhal0420/jeonjugreenmarket/blob/main/%EC%9E%90%EB%A3%8C/%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0.png"/>
     </td>
     <td>
-      <img width="375px" higth="550px" src="https://github.com/cotaek2/Final_project/blob/master/%EC%9E%90%EB%A3%8C/reademe/%EC%8A%A4%EC%BC%80%EC%A5%B4%EB%9F%ACDB.PNG"/>
+      <img width="375px" higth="550px" src="https://github.com/chlqhal0420/jeonjugreenmarket/blob/main/%EC%9E%90%EB%A3%8C/%EA%B2%B0%EC%A0%9C.PNG"/>
     </td>
   </tr>
   <tr>
     <th>
-       영화예매
+       찜하기
     </th>
     <th>
-       영화관좌석예매
+       관리자 페이지
     </th>
   </tr>
   <tr>
     <td>
-      <img width="375px" higth="550px" src="https://github.com/cotaek2/Final_project/blob/master/%EC%9E%90%EB%A3%8C/reademe/%EC%98%81%ED%99%94%EC%98%88%EB%A7%A4step1.PNG"/>
+      <img width="375px" higth="550px" src="https://github.com/chlqhal0420/jeonjugreenmarket/blob/main/%EC%9E%90%EB%A3%8C/%EC%B0%9C%ED%95%98%EA%B8%B0.PNG"/>
     </td>
     <td>
-      <img width="375px" higth="550px" src="https://github.com/cotaek2/Final_project/blob/master/%EC%9E%90%EB%A3%8C/reademe/%EC%98%81%ED%99%94%EC%98%88%EB%A7%A4step2.PNG"/>
+      <img width="375px" higth="550px" src="https://github.com/chlqhal0420/jeonjugreenmarket/blob/main/%EC%9E%90%EB%A3%8C/%EA%B4%80%EB%A6%AC%EC%9E%90.PNG"/>
     </td>
   </tr>
   <tr>
     <th>
-       영화예매정보
+       배송지관리
     </th>
     <th>
-       나의 예매내역
+       장바구니
     </th>
   </tr>
   <tr>
     <td>
-      <img width="375px" higth="550px" src="https://github.com/cotaek2/Final_project/blob/master/%EC%9E%90%EB%A3%8C/reademe/%EC%98%81%ED%99%94%EC%98%88%EB%A7%A4step3.PNG"/>
+      <img width="375px" higth="550px" src="https://github.com/chlqhal0420/jeonjugreenmarket/blob/main/%EC%9E%90%EB%A3%8C/%EB%B0%B0%EC%86%A1%EC%A7%80%EA%B4%80%EB%A6%AC.PNG"/>
     </td>
     <td>
-      <img width="375px" higth="550px" src="https://github.com/cotaek2/Final_project/blob/master/%EC%9E%90%EB%A3%8C/reademe/%EB%82%98%EC%9D%98%EC%98%88%EB%A7%A4%EB%82%B4%EC%97%AD.PNG"/>
+      <img width="375px" higth="550px" src="https://github.com/chlqhal0420/jeonjugreenmarket/blob/main/%EC%9E%90%EB%A3%8C/%EC%9E%A5%EB%B0%94%EA%B5%AC%EB%8B%88.PNG"/>
     </td>
   </tr>
 </table>
