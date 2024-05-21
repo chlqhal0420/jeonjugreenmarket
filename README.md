@@ -65,7 +65,8 @@
     <td width="250px">
       회원가입
       <br>로그인(시큐리티)
-      <br>아이디/비밀번호 찾기
+      <br>아이디찾기(firebase API)
+      <br>비밀번호찾기(firebase API)
       <br>장바구니
       <br>찜하기 
       <br>회원정보 수정
