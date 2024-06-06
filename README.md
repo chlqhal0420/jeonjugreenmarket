@@ -37,7 +37,7 @@
 - **Docker**
 
 ## ERD
-<img src="https://github.com/chlqhal0420/jeonjugreenmarket/blob/main/%EC%9E%90%EB%A3%8C/%EA%B7%B8%EB%A6%B0%EB%A7%88%EC%BC%93.png" width="750px"/>
+<img src="https://github.com/chlqhal0420/jeonjugreenmarket/blob/main/%EC%9E%90%EB%A3%8C/%EC%B5%9C%EC%A2%85%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8ERD.png" width="750px"/>
 
 # 📌 주요 기능
 
